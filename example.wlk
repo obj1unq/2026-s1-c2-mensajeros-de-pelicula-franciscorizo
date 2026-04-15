@@ -4,3 +4,14 @@ object wollok {
 		return 'I am Wolloktastic!'
 	}
 }
+
+
+object neo {
+
+}
+object jeanGray {
+
+}
+object saraConnor {
+
+}
