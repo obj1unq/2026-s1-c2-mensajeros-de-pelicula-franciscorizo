@@ -11,17 +11,23 @@ object neo {
 	method puedeLlamar() {
 		return true
 	} 
+	method pesoTotal() {	
+	return peso 
+   } 
 
 }
 object jeanGray {
      const peso = 65
-     method puedeLlamar() {
+	method pesoTotal() {	
+	return peso 
+   } 
+    method puedeLlamar() {
 		return true
 	} 
 
 }
 object saraConnor {
-   var peso = 60
+   var peso = 70
     
    method pesoTotal() {
 	 return peso + vehiculo.pesoTotalCamion() 
@@ -36,31 +42,42 @@ object moto{
    const peso = 100
 }
 object camion{
-   var peso = 500 
-   var totalAcoplados = 2  	
-   method pesoTotalCamion(){
+   const peso = 500 
+   var totalAcoplados = 1
+   method pesoTotal(){
 	return peso + (totalAcoplados * 2) 
    } 
 }
 object paquete {
-     method name() =   
+	const peso = 0
+	var estaPago = true
+     method puedeSerLlevadoPor_QuePagoA_(persona,lugar) {
+		if (lugar.name() == "Puente Brooklyn"){
+			return persona.pesoTotal() > 1000 && estaPago
+		} else{
+			return persona.puedeLlamar()  && estaPago
+	 }
+	 }
+	 method puedeSerLlevadoPor_QueNoPagoA_(persona,lugar) {
+		if (lugar.name() == "Puente Brooklyn"){
+			return persona.pesoTotal() > 1000 && !estaPago
+		} else{
+			return persona.puedeLlamar()  && !estaPago
+	 }
+}
+ 
 }
 object puenteBrooklyn {
-	method pesoPersona(persona) {
-		return persona.peso()
-	} 
-	
-method enviarPaquete(persona) {
-  return self.pesoPersona(persona) <= 1000
-}
-
+	const name = "Puente Brooklyn"
+	method nombre() {
+	  return name
+	}
 } 
 object laMatrix {
-
-  method puedeEnviar(persona) {	
-  return persona.puedeLlamar()
-
-
-}
+	const name = "La Matrix"
+	method nombre() {
+	  return name
+	}
 
 }
+

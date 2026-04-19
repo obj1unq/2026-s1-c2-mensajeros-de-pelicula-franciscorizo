@@ -1,0 +1,16 @@
+import example.*
+
+test "1. El paquete de George que no está pago no puede ser llevado por Neo a la matrix." {
+  assert.that(paquete.puedeSerLlevadoPor_QueNoPagoA_(neo,La Matrix))
+}
+ 
+test "2.El paquete de George que sí está pago puede ser llevado por Jean a la matrix" {
+  assert.that(paquete.puedeSerLlevadoPor_QuePagoA_(jeanGray,La Matrix))
+}
+
+test "3. El paquete de George que sí está pago no puede ser llevado por Sara (que pesa 70kg) a Brooklyn si es que utiliza un camión con un acoplado ." {
+  assert.that(paquete.puedeSerLlevadoPor_QuePagoA_(saraConnor,Puente de Brooklyn))
+}
+test "4. La entrega anterior puede hacerse si Sara usa una moto" {
+  assert.that(paquete.puedeSerLlevadoPor_QueNoPagoA_(saraConnor,La Matrix))
+}
