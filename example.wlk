@@ -8,8 +8,10 @@ object wollok {
 
 object neo {
 	const peso = 0
+	var tieneCredito = true
+
 	method puedeLlamar() {
-		return true
+		return tieneCredito
 	} 
 	method pesoTotal() {	
 	return peso 
@@ -28,11 +30,19 @@ object jeanGray {
 }
 object saraConnor {
    var peso = 70
-    
-   method pesoTotal() {
-	 return peso + vehiculo.pesoTotalCamion() 
+   var vehiculoActual = null
+   method configurarPesoASara(pesoNuevo) {
+	 peso = pesoNuevo
    }
-   var vehiculo = camion
+   method pesoTotal() {
+	 return peso + vehiculoActual.pesoVehiculo() 
+   }
+   method ingresarAVehiculo(vehiculo) {
+	 vehiculoActual = vehiculo  //Setear vehiculo
+   }
+   method vehiculoActual(){ //getter
+   	 return vehiculoActual 
+   } 
 	method puedeLlamar() {
 		return true
 	} 
@@ -40,44 +50,48 @@ object saraConnor {
 }
 object moto{
    const peso = 100
+   	method pesoVehiculo(){
+	return peso  
+   } 
 }
 object camion{
    const peso = 500 
    var totalAcoplados = 1
-   method pesoTotal(){
+   method aumentarAcoplados(cantidad) {
+	 totalAcoplados = totalAcoplados + cantidad 
+   }
+   method pesoVehiculo(){
 	return peso + (totalAcoplados * 2) 
    } 
 }
 object paquete {
-	const peso = 0
 	var estaPago = true
-     method puedeSerLlevadoPor_QuePagoA_(persona,lugar) {
-		if (lugar.name() == "Puente Brooklyn"){
-			return persona.pesoTotal() > 1000 && estaPago
-		} else{
-			return persona.puedeLlamar()  && estaPago
+	method estaPago(_estaPago) {
+	  estaPago = _estaPago
+	}
+	method estaPago() {
+		return estaPago
+	} 
+     method puedeSerLlevado (persona,lugar ) {
+		return lugar.dejaEntrar(persona) && estaPago
 	 }
-	 }
-	 method puedeSerLlevadoPor_QueNoPagoA_(persona,lugar) {
-		if (lugar.name() == "Puente Brooklyn"){
-			return persona.pesoTotal() > 1000 && !estaPago
-		} else{
-			return persona.puedeLlamar()  && !estaPago
-	 }
+ 
+
 }
  
-}
+ 
 object puenteBrooklyn {
-	const name = "Puente Brooklyn"
-	method nombre() {
-	  return name
-	}
+  
+ 
+	method dejaEntrar(personaje) {
+		return  personaje.pesoTotal() < 1000 
+	} 
 } 
 object laMatrix {
-	const name = "La Matrix"
-	method nombre() {
-	  return name
-	}
-
+  
+ 
+	 method dejaEntrar(personaje) {
+		return  personaje.puedeLlamar()
+	} 
 }
 
